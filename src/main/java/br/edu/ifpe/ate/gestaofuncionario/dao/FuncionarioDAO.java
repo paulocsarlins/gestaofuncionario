@@ -83,5 +83,39 @@ public List<Funcionario> consultarTodosFuncionarios() throws ClassNotFoundExcept
 		return funcionario;
 		
 	}
+
+	public void alterarFuncionarioDAO(Funcionario funcionario) throws ClassNotFoundException, SQLException {
+		 Connection connection = ConexaoMySQL.getConexaoMySQL();
+		 String sql = "UPDATE `funcionarios` SET `nome`= ?, `email`= ?, `cargo`= ?,`endereco`= ?,"
+		 		+ "`cidade`= ? WHERE codigo = ?";
+
+		 PreparedStatement stmt = connection.prepareStatement(sql);
+	        
+	        stmt.setString(1, funcionario.getNome());
+	        stmt.setString(2, funcionario.getEmail());
+	        stmt.setString(3, funcionario.getCargo());
+	        stmt.setString(4, funcionario.getEndereco());
+	        stmt.setString(5, funcionario.getCidade());
+	        stmt.setInt(6, funcionario.getCodigo());
+	        
+	        stmt.executeUpdate();
+	        stmt.close();
+	        connection.close();
+	 
+	 }
+	
+	public void deletarFuncionarioDAO(int codigo) throws ClassNotFoundException, SQLException {
+		 Connection connection = ConexaoMySQL.getConexaoMySQL();
+		 String sql = "DELETE FROM `funcionarios` WHERE codigo = ?";
+
+		 PreparedStatement stmt = connection.prepareStatement(sql);
+
+		 stmt.setInt(1, codigo);
+
+		 stmt.execute();
+		 stmt.close();
+		 connection.close();
+
+	 }
 }
 

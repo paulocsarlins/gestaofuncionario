@@ -34,7 +34,30 @@
 		<td class="col-2" th:text="${funcionario.cidade}">Cidade</td>
 		<td class="col-1"><a th:href="@{/funcionarios/{funcionarioId}(funcionarioId = ${funcionario.codigo})}">Detalhes</a></td>
 		<td class="col-1"><a th:href="@{/funcionarios/{funcionarioId}/edit(funcionarioId = ${funcionario.codigo})}">Editar</a></td>
-		<td class="col-1"><a th:href="@{/funcionarios/{funcionarioId}/delete(funcionarioId = ${funcionario.codigo})}">Deletar</a></td>
+		<td>
+		<a role="button" data-bs-toggle="modal" th:data-bs-target="${'#deleteFuncionario' + funcionario.codigo}" href="">Deletar</a>
+        <form th:action="@{/funcionarios/{funcionarioId}/delete(funcionarioId = ${funcionario.codigo})}" method="post">
+
+		<div class="modal fade" th:id="${'deleteFuncionario' + funcionario.codigo}" tabindex="-1" aria-labelledby="exdeleteFuncionario" aria-hidden="true">
+		<div class="modal-dialog">
+		<div class="modal-content">
+		<div class="modal-header">
+		<h5 class="modal-title" id="exdeleteFuncionario">Deletar funcionário</h5>
+		<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+		</div>
+		<div class="modal-body">
+		<p>Deseja realmente deletar o registro: <span th:text="${funcionario.nome}"></span>?</p>
+												
+		</div>
+		<div class="modal-footer">
+		<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+		<button type="submit" class="btn btn-primary">Deletar</button>
+		</div>
+		</div>
+		</div>
+		</div>
+		
+		</form> </td>
     </tr>
 
   </tbody>
@@ -42,7 +65,7 @@
 </div>
 </div>
 	<div class="row">
-	<a href="/funcionario/new">Novo funcionário</a>
+	<a href="/funcionarios/new">Novo funcionário</a>
 </div>
 </div>
 

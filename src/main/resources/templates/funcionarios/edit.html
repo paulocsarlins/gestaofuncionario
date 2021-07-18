@@ -1,11 +1,12 @@
 <!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="~{fragmentos :: head('Novo Funcionário')}"></head>
+
+<head th:replace="~{fragmentos :: head('Edite Funcionário #')}"></head>
   <body>
     
-    <head th:replace="~{fragmentos :: header('Novo Funcionário')}"></head>
+    <head th:replace="~{fragmentos :: header('Edite Funcionário #' + ${funcionarioID})}"></head>
     
-    <div th:replace="~{funcionarios/fragmentos :: form(funcionario, '/funcionarios')}"></div>
+    <div th:replace="~{funcionarios/fragmentos :: form(funcionario, '/funcionarios/' + ${funcionarioID})}"></div>
 
 	<script type="text/javascript">
 		// Example starter JavaScript for disabling form submissions if there are invalid fields
